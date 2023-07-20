@@ -19,14 +19,11 @@ router.post('/createuser', [
     if (!errors.isEmpty()) {
         return res.status(400).json({ success, errors: errors.array() })
     }
-    // console.log(req.body)
-    // let user = await User.findOne({email:req.body.email})
     const salt = await bcrypt.genSalt(10)
     let securePass = await bcrypt.hash(req.body.password, salt);
     try {
         await User.create({
             name: req.body.name,
-            // password: req.body.password,  first write this and then use bcryptjs
             password: securePass,
             email: req.body.email,
             location: req.body.location
@@ -50,7 +47,6 @@ router.post('/createuser', [
 })
 
 
-// Authentication a User, No login Requiered
 router.post('/login', [
     body('email', "Enter a Valid Email").isEmail(),
     body('password', "Password cannot be blank").exists(),
@@ -63,12 +59,12 @@ router.post('/login', [
 
     const { email, password } = req.body;
     try {
-        let user = await User.findOne({ email });  //{email:email} === {email}
+        let user = await User.findOne({ email });  
         if (!user) {
             return res.status(400).json({ success, error: "Try Logging in with correct credentials" });
         }
 
-        const pwdCompare = await bcrypt.compare(password, user.password); // this return true false.
+        const pwdCompare = await bcrypt.compare(password, user.password); 
         if (!pwdCompare) {
             return res.status(400).json({ success, error: "Try Logging in with correct credentials" });
         }
@@ -91,7 +87,7 @@ router.post('/login', [
 router.post('/getuser', fetch, async (req, res) => {
     try {
         const userId = req.user.id;
-        const user = await User.findById(userId).select("-password") // -password will not pick password from db.
+        const user = await User.findById(userId).select("-password") 
         res.send(user)
     } catch (error) {
         console.error(error.message)

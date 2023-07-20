@@ -8,8 +8,11 @@ global.foodData = require('./db')(function call(err, data, CatData) {
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 5000
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+const BASE_URL = "http://localhost:3000";
+
+
+app.use((req, res, next) => { 
+  res.setHeader("Access-Control-Allow-Origin", BASE_URL);
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"

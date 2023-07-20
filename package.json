@@ -20,6 +20,5 @@
     "mongodb-legacy": "^5.0.0",
     "mongoose": "^6.10.0",
     "nodemon": "^2.0.22",
-    "razorpay": "^2.8.6"
   }
 }

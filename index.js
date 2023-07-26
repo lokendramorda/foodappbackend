@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000
 
 
 app.use((req, res, next) => { 
-  res.setHeader("Access-Control-Allow-Origin", "https://goofoodie.netlify.app");
+  res.setHeader("Access-Control-Allow-Origin", "https://gofoodie.netlify.app");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"

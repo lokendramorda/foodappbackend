@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs')
 var jwt = require('jsonwebtoken');
 const axios = require('axios')
 const fetch = require('../middleware/fetchdetails');
-const jwtSecret = "*******"
+const jwtSecret = "HaHa"
 
 router.post('/createuser', [
     body('email').isEmail(),
@@ -101,7 +101,7 @@ router.post('/getlocation', async (req, res) => {
         let long = req.body.latlong.long
         console.log(lat, long)
         let location = await axios
-            .get("https://api.opencagedata.com/geocode/v1/json?q=" + lat + "+" + long + "&key=***************************")
+            .get("https://api.opencagedata.com/geocode/v1/json?q=" + lat + "+" + long + "&key=74c89b3be64946ac96d777d08b878d43")
             .then(async res => {
                 console.log(res.data.results)
                 let response = res.data.results[0].components;
